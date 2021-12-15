@@ -39,3 +39,14 @@ interface Developer extends Person {
   language: string;
 }
 const joo: Developer = { name: 'joo', age: 20, language: 'ts' };
+
+
+// 딕셔너리 패턴
+interface StringRegexDictionary{
+  [key: string]: RegExp;
+}
+
+var regexDict: StringRegexDictionary = {
+  cssFile: /\.css$/,
+  jsFile: /\.js$/,
+}
