@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import styled from "styled-components";
 import Header from "./components/Header";
 import InfoTable from "./components/InfoTable";
@@ -11,6 +11,12 @@ const LazyImageModal = lazy(() => import("./components/ImageModal"));
 function App() {
   const [showModal, setShowModal] = useState(false);
 
+  //preload 방법1. 상호작용 시 load
+  const handleMouseEnter = () => import("./components/ImageModal");
+
+  //preload 방법2. 첫 import 완료 후 load
+  useEffect(() => import("./components/ImageModal"), []);
+
   return (
     <div className="App">
       <Header />
@@ -19,6 +25,7 @@ function App() {
         onClick={() => {
           setShowModal(true);
         }}
+        onMouseEnter={handleMouseEnter}
       >
         올림픽 사진 보기
       </ButtonModal>
